@@ -1,6 +1,18 @@
 package com.gargi.example.gcmtest;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -185,6 +197,24 @@ public class GCMActivity extends ActionBarActivity {
 	
 	private void sendRegistrationIdToBackend() {
 		
+		try {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost("http://w3castle.com/wanton/v1/updatePushId");
+			httppost.addHeader("Authkey", "fdc1a6866ba9b9fbb1a3c52333adb5cb");
+			List<NameValuePair> data = new ArrayList<NameValuePair>();
+			data.add(new BasicNameValuePair("push_id",mRegistrationId));
+			data.add(new BasicNameValuePair("device_type", "ANDROID"));
+			httppost.setEntity(new UrlEncodedFormEntity(data));
+			HttpResponse response = httpclient.execute(httppost);
+			String resStr = EntityUtils.toString(response.getEntity());
+			
+		} catch(IOException e) {
+			
+		} catch(ParseException p) {
+			
+		}
+
+
 	}
 	
 	private void storeRegistrationId(Context context, String regId) {
