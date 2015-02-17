@@ -29,7 +29,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class GCMActivity extends ActionBarActivity {
+public class GcmActivity extends ActionBarActivity {
 
     public static final String EXTRA_MESSAGE = "message";
     public static final String PROPERTY_REG_ID = "registration_id";
@@ -136,7 +136,7 @@ public class GCMActivity extends ActionBarActivity {
 	private SharedPreferences getGCMPreferences(Context context) {
 	    // This sample app persists the registration ID in shared preferences, but
 	    // how you store the registration ID in your app is up to you.
-	    return getSharedPreferences(GCMActivity.class.getSimpleName(),
+	    return getSharedPreferences(GcmActivity.class.getSimpleName(),
 	            Context.MODE_PRIVATE);
 	}
 	
@@ -206,7 +206,7 @@ public class GCMActivity extends ActionBarActivity {
 			data.add(new BasicNameValuePair("device_type", "ANDROID"));
 			httppost.setEntity(new UrlEncodedFormEntity(data));
 			HttpResponse response = httpclient.execute(httppost);
-			String resStr = EntityUtils.toString(response.getEntity());
+			//String resStr = EntityUtils.toString(response.getEntity());
 			
 		} catch(IOException e) {
 			
